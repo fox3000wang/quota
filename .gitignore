@@ -159,3 +159,7 @@ cython_debug/
 #  option (not recommended) you can uncomment the following to ignore the entire idea folder.
 #.idea/
 report.xlsx
+.DS_Store
+~$综合.xlsx
+tempCodeRunnerFile.py
+tempCodeRunnerFile.py
