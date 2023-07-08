@@ -1,5 +1,4 @@
 #!/usr/bin/python3
-
 import os
 
 from openpyxl import Workbook
@@ -13,17 +12,14 @@ def findAllFile(base):
                 fullname = os.path.join(root, f)
                 yield fullname
 
-# 检查报告如果存在就先删除
-def checkReport():
-    if os.path.exists("report.xlsx"):
-        os.remove("report.xlsx")
-
 # 解析xlsx
 def parseXlsx(path):
     # 读取
+    #sheet = pd.read_excel(path, sheet_name='Sheet1', usecols='B:B')
+
     workbook = load_workbook(filename=path)
     sheet = workbook["Sheet1"]
-    print(sheet['B1'].value)
+    print(sheet['B1'])
 
 # 生成报告
 def generateReport():
@@ -34,11 +30,11 @@ def generateReport():
 
 # 主函数
 def main():
-    checkReport()
     base = '.'
     for i in findAllFile(base):
         parseXlsx(i)
     generateReport()    
+
 
 if __name__ == '__main__':
     main()
