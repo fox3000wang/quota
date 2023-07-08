@@ -66,11 +66,32 @@ def parseDocx():
 
     return data
 
-# # 处理综合文档排序
-# def handleDocx(data):
-#     sorted_data = data.sort(key='avg', reverse=True)
 
-#     return sorted_data
+# 写入分析数据
+def writeDocx(data):
+    workbook = load_workbook(filename='综合.xlsx')
+    sheet = workbook["bug提交"]
+
+    # 找出第一名
+    first = None
+    for d in data:
+        if d['order'] == 1:
+            first = d
+            break
+
+    for index in range(len(data)):
+        d = data[index]
+
+        sheet['U'+str(d['index']+2)] = d['avg']
+        sheet['V'+str(d['index']+2)] = d['order']
+        
+        #sheet['W'+str(d['index']+2)] = round((d['avg'] / first['avg']) * 100)
+        if d['order'] > 15:
+            sheet['W'+str(d['index']+2)] = 40
+        else:
+            sheet['W'+str(d['index']+2)] = round((d['avg'] / first['avg']) * 100)
+        
+    workbook.save("report.xlsx")
 
 
 # 主函数
@@ -87,6 +108,8 @@ def main():
     print(summary)
     # sort_data = handleDocx(summary)
     # print(sort_data)
+
+    writeDocx(summary)
 
 if __name__ == '__main__':
     main()
