@@ -9,8 +9,6 @@
 ### 读取 excle 库
 
 ```shell
-pip install pandas
-
 pip install openpyxl
 ```
 

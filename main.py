@@ -7,7 +7,7 @@ from openpyxl import Workbook
 from openpyxl import load_workbook
 
 # 全局就指定一个xls
-workbook = load_workbook(filename='综合.xlsx')
+workbook = load_workbook(filename='考核原始数据总表.xlsx')
 
 # 遍历文件
 def findAllFile(base):
@@ -36,7 +36,7 @@ def init():
 
 # 01.解析BUG提交
 def parse_bug_commit():
-    print(workbook)
+    # print(workbook)
     sheet = workbook["bug提交"]
     data = []
     
@@ -140,6 +140,8 @@ def main():
     write_doc_review(doc_review)
 
     workbook.save("report.xlsx")
+
+    print('good luck!')
 
 
 if __name__ == '__main__':
